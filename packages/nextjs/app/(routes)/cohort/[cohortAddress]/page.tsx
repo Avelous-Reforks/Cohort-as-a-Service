@@ -111,7 +111,7 @@ const CohortPage = ({ params }: { params: { cohortAddress: string } }) => {
         </Link>
       )}
       <div>
-        <h1 className="text-4xl font-bold mb-8 text-primary-content bg-primary inline-block p-2">Cohort</h1>
+        <h1 className="text-4xl font-bold mb-8 text-primary-content bg-primary inline-block p-2 rounded-md">Cohort</h1>
         <h2 className="text-2xl font-bold">{name}</h2>
         <p className="mt-0">{description}</p>
         <p>

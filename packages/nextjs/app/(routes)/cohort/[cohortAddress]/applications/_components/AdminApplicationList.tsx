@@ -95,7 +95,7 @@ export const AdminApplicationList = ({
 
   return (
     <div className="w-full">
-      <h2 className="text-3xl mb-6 inline-block px-4 py-2 bg-primary text-secondary">Manage Applications</h2>
+      <h2 className="text-3xl mb-6 inline-block px-4 py-2 bg-primary text-secondary rounded-md">Manage Applications</h2>
 
       <div className="flex gap-2 mb-6">
         <button

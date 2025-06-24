@@ -34,7 +34,7 @@ export const ProjectList = ({ projects, cohortAddress }: ProjectListProps) => {
 
   return (
     <div className="w-full">
-      <h2 className="text-3xl mb-6 inline-block px-4 py-2 bg-primary text-secondary">Projects</h2>
+      <h2 className="text-3xl mb-6 inline-block px-4 py-2 bg-primary text-secondary rounded-md">Projects</h2>
       {isAdmin && <AddProject cohortAddress={cohortAddress} />}
       <div className="space-y-10 mt-6">
         {projects.map(project => (
