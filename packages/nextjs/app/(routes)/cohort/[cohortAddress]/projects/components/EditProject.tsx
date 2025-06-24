@@ -114,7 +114,7 @@ export const EditProject = ({ project, onSuccess }: EditProjectProps) => {
           <div className="font-bold mb-4 flex items-center gap-1">Edit project</div>
           <label
             htmlFor={`edit-project-modal-${project.id}`}
-            className="btn btn-ghost btn-sm btn-circle absolute right-3 top-3"
+            className="btn btn-ghost btn-sm btn-circle rounded-md absolute right-3 top-3"
           >
             ✕
           </label>

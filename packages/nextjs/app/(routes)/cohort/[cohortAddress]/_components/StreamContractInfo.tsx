@@ -284,7 +284,7 @@ export const StreamContractInfo = ({
               Your withdrawal requires approval. You may submit a new request if you have no incomplete/pending request.
             </span>
           )}
-          <label htmlFor="withdraw-modal" className="btn btn-ghost btn-sm btn-circle absolute right-3 top-3">
+          <label htmlFor="withdraw-modal" className="btn btn-ghost btn-sm btn-circle rounded-md absolute right-3 top-3">
             ✕
           </label>
           <div className="space-y-3 mt-8">
@@ -295,14 +295,14 @@ export const StreamContractInfo = ({
                   <div className="flex gap-2">
                     <button
                       type="button"
-                      className={`btn btn-xs ${!isPreviewing ? "btn-primary" : "btn-ghost"}`}
+                      className={`btn btn-xs rounded-md ${!isPreviewing ? "btn-primary" : "btn-ghost"}`}
                       onClick={() => setIsPreviewing(false)}
                     >
                       Edit
                     </button>
                     <button
                       type="button"
-                      className={`btn btn-xs ${isPreviewing ? "btn-primary" : "btn-ghost"}`}
+                      className={`btn btn-xs rounded-md ${isPreviewing ? "btn-primary" : "btn-ghost"}`}
                       onClick={() => setIsPreviewing(true)}
                     >
                       Preview
@@ -348,7 +348,7 @@ export const StreamContractInfo = ({
 
               <button
                 type="button"
-                className="btn btn-secondary btn-sm w-full"
+                className="btn btn-secondary btn-sm rounded-md w-full"
                 disabled={isPending}
                 onClick={streamWithdraw}
               >

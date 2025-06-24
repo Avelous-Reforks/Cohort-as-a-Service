@@ -126,7 +126,10 @@ export const ApplicationModal = ({ cohortAddress, onApplicationSuccess }: Applic
         <div className="modal-box relative bg-base-100 border border-primary max-w-2xl ">
           <input className="h-0 w-0 absolute top-0 left-0" />
           <div className="font-bold mb-4 flex items-center gap-1">Submit Application</div>
-          <label htmlFor="add-application-modal" className="btn btn-ghost btn-sm btn-circle absolute right-3 top-3">
+          <label
+            htmlFor="add-application-modal"
+            className="btn btn-ghost btn-sm btn-circle rounded-md absolute right-3 top-3"
+          >
             ✕
           </label>
 
@@ -137,14 +140,14 @@ export const ApplicationModal = ({ cohortAddress, onApplicationSuccess }: Applic
                 <div className="flex gap-2">
                   <button
                     type="button"
-                    className={`btn btn-xs ${!isPreviewing ? "btn-primary" : "btn-ghost"}`}
+                    className={`btn btn-xs rounded-md ${!isPreviewing ? "btn-primary" : "btn-ghost"}`}
                     onClick={() => setIsPreviewing(false)}
                   >
                     Edit
                   </button>
                   <button
                     type="button"
-                    className={`btn btn-xs ${isPreviewing ? "btn-primary" : "btn-ghost"}`}
+                    className={`btn btn-xs rounded-md ${isPreviewing ? "btn-primary" : "btn-ghost"}`}
                     onClick={() => setIsPreviewing(true)}
                   >
                     Preview

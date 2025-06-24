@@ -81,7 +81,7 @@ export const Faucet = () => {
 
   return (
     <div>
-      <label htmlFor="faucet-modal" className="btn btn-primary btn-sm font-normal gap-1">
+      <label htmlFor="faucet-modal" className="btn btn-primary btn-sm rounded-md font-normal gap-1">
         <BanknotesIcon className="h-4 w-4" />
         <span>Faucet</span>
       </label>
@@ -91,7 +91,7 @@ export const Faucet = () => {
           {/* dummy input to capture event onclick on modal box */}
           <input className="h-0 w-0 absolute top-0 left-0" />
           <h3 className="text-xl font-bold mb-3">Local Faucet</h3>
-          <label htmlFor="faucet-modal" className="btn btn-ghost btn-sm btn-circle absolute right-3 top-3">
+          <label htmlFor="faucet-modal" className="btn btn-ghost btn-sm btn-circle rounded-md absolute right-3 top-3">
             ✕
           </label>
           <div className="space-y-3">
@@ -112,7 +112,7 @@ export const Faucet = () => {
                 onChange={value => setInputAddress(value as AddressType)}
               />
               <EtherInput placeholder="Amount to send" value={sendValue} onChange={value => setSendValue(value)} />
-              <button className="h-10 btn btn-primary btn-sm px-2 rounded-full" onClick={sendETH} disabled={loading}>
+              <button className="h-10 btn btn-primary btn-sm px-2 rounded-md" onClick={sendETH} disabled={loading}>
                 {!loading ? (
                   <BanknotesIcon className="h-6 w-6" />
                 ) : (

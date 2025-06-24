@@ -83,13 +83,13 @@ export const DeleteProject = ({ project, onSuccess }: DeleteProjectProps) => {
         <label className="modal-box relative bg-base-100 border border-primary">
           <input className="h-0 w-0 absolute top-0 left-0" />
           <div className="font-bold mb-8 flex items-center gap-1 text-error">Delete project: {project.name}</div>
-          <label htmlFor={modalId} className="btn btn-ghost btn-sm btn-circle absolute right-3 top-3">
+          <label htmlFor={modalId} className="btn btn-ghost btn-sm btn-circle rounded-md absolute right-3 top-3">
             ✕
           </label>
           <div className="space-y-4">
             <p>Are you sure you want to delete this project? This action cannot be undone.</p>
             <div className="flex flex-col gap-6 items-center">
-              <button className="btn btn-sm btn-error w-full" onClick={handleDelete} disabled={isPending}>
+              <button className="btn btn-sm btn-error rounded-md w-full" onClick={handleDelete} disabled={isPending}>
                 {isPending ? "Signing..." : "Delete Project"}
               </button>
             </div>

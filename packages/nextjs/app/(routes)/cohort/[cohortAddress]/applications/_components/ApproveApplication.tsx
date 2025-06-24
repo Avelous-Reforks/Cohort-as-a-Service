@@ -108,7 +108,11 @@ export const ApproveApplication = ({
 
   return (
     <div className="flex gap-2">
-      <button className="btn btn-xs btn-success" onClick={handleApprove} disabled={isPendingApprove || isPendingReject}>
+      <button
+        className="btn btn-xs btn-success rounded-md"
+        onClick={handleApprove}
+        disabled={isPendingApprove || isPendingReject}
+      >
         {isPendingApprove ? (
           <span className="loading loading-spinner loading-xs"></span>
         ) : (
@@ -116,7 +120,7 @@ export const ApproveApplication = ({
         )}
       </button>
 
-      <button className="btn btn-xs btn-error" onClick={openRejectModal}>
+      <button className="btn btn-xs btn-error rounded-md" onClick={openRejectModal}>
         {isPendingReject ? <span className="loading loading-spinner loading-xs"></span> : <X className="h-3 w-3" />}
       </button>
 
@@ -126,7 +130,10 @@ export const ApproveApplication = ({
         <div className="modal-box relative bg-base-100 border border-primary max-w-2xl">
           <input className="h-0 w-0 absolute top-0 left-0" />
           <div className="font-bold mb-4 flex items-center gap-1">Approve Builder</div>
-          <label htmlFor="approve-builder-modal" className="btn btn-ghost btn-sm btn-circle absolute right-3 top-3">
+          <label
+            htmlFor="approve-builder-modal"
+            className="btn btn-ghost btn-sm btn-circle rounded-md absolute right-3 top-3"
+          >
             ✕
           </label>
 
@@ -181,14 +188,14 @@ export const ApproveApplication = ({
                 <div className="flex gap-2">
                   <button
                     type="button"
-                    className={`btn btn-xs ${!isApproveNotePreviewing ? "btn-primary" : "btn-ghost"}`}
+                    className={`btn btn-xs rounded-md ${!isApproveNotePreviewing ? "btn-primary" : "btn-ghost"}`}
                     onClick={() => setIsApproveNotePreviewing(false)}
                   >
                     Edit
                   </button>
                   <button
                     type="button"
-                    className={`btn btn-xs ${isApproveNotePreviewing ? "btn-primary" : "btn-ghost"}`}
+                    className={`btn btn-xs rounded-md ${isApproveNotePreviewing ? "btn-primary" : "btn-ghost"}`}
                     onClick={() => setIsApproveNotePreviewing(true)}
                   >
                     Preview
@@ -212,7 +219,7 @@ export const ApproveApplication = ({
             </div>
 
             <button
-              className="btn btn-sm btn-primary w-full mt-4"
+              className="btn btn-sm btn-primary rounded-md w-full mt-4"
               onClick={approveApplication}
               disabled={isPendingApprove || !cap}
             >
@@ -228,7 +235,10 @@ export const ApproveApplication = ({
         <div className="modal-box relative bg-base-100 border border-primary max-w-2xl">
           <input className="h-0 w-0 absolute top-0 left-0" />
           <div className="font-bold mb-4 flex items-center gap-1">Reject Application</div>
-          <label htmlFor="reject-builder-modal" className="btn btn-ghost btn-sm btn-circle absolute right-3 top-3">
+          <label
+            htmlFor="reject-builder-modal"
+            className="btn btn-ghost btn-sm btn-circle rounded-md absolute right-3 top-3"
+          >
             ✕
           </label>
 
@@ -239,14 +249,14 @@ export const ApproveApplication = ({
                 <div className="flex gap-2">
                   <button
                     type="button"
-                    className={`btn btn-xs ${!isRejectNotePreviewing ? "btn-primary" : "btn-ghost"}`}
+                    className={`btn btn-xs rounded-md ${!isRejectNotePreviewing ? "btn-primary" : "btn-ghost"}`}
                     onClick={() => setIsRejectNotePreviewing(false)}
                   >
                     Edit
                   </button>
                   <button
                     type="button"
-                    className={`btn btn-xs ${isRejectNotePreviewing ? "btn-primary" : "btn-ghost"}`}
+                    className={`btn btn-xs rounded-md ${isRejectNotePreviewing ? "btn-primary" : "btn-ghost"}`}
                     onClick={() => setIsRejectNotePreviewing(true)}
                   >
                     Preview
@@ -270,7 +280,7 @@ export const ApproveApplication = ({
             </div>
 
             <button
-              className="btn btn-sm btn-primary w-full mt-4"
+              className="btn btn-sm btn-primary rounded-md w-full mt-4"
               onClick={handleReject}
               disabled={isPendingApprove || isPendingReject}
             >

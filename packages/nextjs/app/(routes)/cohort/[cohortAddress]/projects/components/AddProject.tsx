@@ -116,7 +116,10 @@ export const AddProject = ({ onSuccess, cohortAddress }: AddProjectProps) => {
           {/* dummy input to capture event onclick on modal box */}
           <input className="h-0 w-0 absolute top-0 left-0" />
           <div className="font-bold mb-4 flex items-center gap-1">Add a new project</div>
-          <label htmlFor="add-project-modal" className="btn btn-ghost btn-sm btn-circle absolute right-3 top-3">
+          <label
+            htmlFor="add-project-modal"
+            className="btn btn-ghost btn-sm btn-circle rounded-md absolute right-3 top-3"
+          >
             ✕
           </label>
 

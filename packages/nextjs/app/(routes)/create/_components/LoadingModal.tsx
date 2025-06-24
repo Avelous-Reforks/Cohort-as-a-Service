@@ -79,7 +79,7 @@ export const LoadingModal = ({ isOpen, stage, isError, onClose, onRetry }: Loadi
         }`}
       >
         {isError && (
-          <button onClick={onClose} className="absolute top-4 right-4 btn btn-ghost btn-sm btn-circle">
+          <button onClick={onClose} className="absolute top-4 right-4 btn btn-ghost btn-sm btn-circle rounded-md">
             <X className="h-4 w-4" />
           </button>
         )}
@@ -96,10 +96,10 @@ export const LoadingModal = ({ isOpen, stage, isError, onClose, onRetry }: Loadi
               We encountered an error while creating your cohort. Please try again.
             </p>
             <div className="flex gap-3 justify-center">
-              <button onClick={onClose} className="btn btn-outline btn-sm">
+              <button onClick={onClose} className="btn btn-outline btn-sm rounded-md">
                 Cancel
               </button>
-              <button onClick={onRetry} className="btn btn-primary btn-sm">
+              <button onClick={onRetry} className="btn btn-primary btn-sm rounded-md">
                 Try Again
               </button>
             </div>

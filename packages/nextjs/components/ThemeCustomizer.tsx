@@ -232,7 +232,7 @@ export const ThemeCustomizer = ({ cohortAddress, isAdmin }: ThemeCustomizerProps
           <div className="bg-base-100 rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border">
             <div className="p-4 flex justify-between items-center border-b border-neutral">
               <h2 className="text-xl font-bold">Customize Cohort Theme</h2>
-              <button onClick={handleCancel} className="btn btn-ghost btn-sm">
+              <button onClick={handleCancel} className="btn btn-ghost btn-sm rounded-md">
                 <XMarkIcon className="h-5 w-5" />
               </button>
             </div>
@@ -374,7 +374,10 @@ export const ThemeCustomizer = ({ cohortAddress, isAdmin }: ThemeCustomizerProps
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <h3 className="text-lg font-semibold">Preview</h3>
-                  <button onClick={() => setPreviewExpanded(!previewExpanded)} className="btn btn-xs btn-ghost">
+                  <button
+                    onClick={() => setPreviewExpanded(!previewExpanded)}
+                    className="btn btn-xs btn-ghost rounded-md"
+                  >
                     {previewExpanded ? "Show Less" : "Show More"}
                   </button>
                 </div>
@@ -385,8 +388,8 @@ export const ThemeCustomizer = ({ cohortAddress, isAdmin }: ThemeCustomizerProps
                   </h4>
 
                   <div className="flex flex-wrap gap-2">
-                    <button className="btn btn-primary">Primary Button</button>
-                    <button className="btn btn-secondary">Secondary Button</button>
+                    <button className="btn btn-primary rounded-md">Primary Button</button>
+                    <button className="btn btn-secondary rounded-md">Secondary Button</button>
                   </div>
 
                   <div className="flex gap-2">
@@ -429,15 +432,19 @@ export const ThemeCustomizer = ({ cohortAddress, isAdmin }: ThemeCustomizerProps
             </div>
 
             <div className="border-t border-neutral p-4 flex justify-between">
-              <button onClick={handleResetDefaults} className="btn btn-secondary btn-sm" disabled={isLoading}>
+              <button
+                onClick={handleResetDefaults}
+                className="btn btn-secondary btn-sm rounded-md"
+                disabled={isLoading}
+              >
                 Reset to Defaults
               </button>
 
               <div className="flex gap-2">
-                <button onClick={handleCancel} className="btn btn-secondary btn-sm ">
+                <button onClick={handleCancel} className="btn btn-secondary btn-sm rounded-md">
                   Cancel
                 </button>
-                <button onClick={handleSave} className="btn btn-primary btn-sm" disabled={isLoading}>
+                <button onClick={handleSave} className="btn btn-primary btn-sm rounded-md" disabled={isLoading}>
                   {isLoading ? <span className="loading loading-spinner loading-xs"></span> : "Save Changes"}
                 </button>
               </div>

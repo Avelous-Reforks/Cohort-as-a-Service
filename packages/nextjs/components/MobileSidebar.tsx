@@ -20,7 +20,7 @@ export const MobileSidebar = () => {
 
   return (
     <div ref={sidebarRef}>
-      <button className="btn btn-ghost drawer-button" onClick={() => setIsOpen(true)}>
+      <button className="btn btn-ghost drawer-button rounded-md" onClick={() => setIsOpen(true)}>
         <Bars3Icon className="h-6 w-6" />
       </button>
 

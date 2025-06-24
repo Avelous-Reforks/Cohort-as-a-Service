@@ -20,7 +20,7 @@ const AppPage: NextPage = () => {
             <ConnectButton.Custom>
               {({ openConnectModal }) => {
                 return (
-                  <button className="btn btn-primary btn-sm" onClick={openConnectModal} type="button">
+                  <button className="btn btn-primary btn-sm rounded-md" onClick={openConnectModal} type="button">
                     Connect Wallet
                   </button>
                 );
@@ -37,7 +37,7 @@ const AppPage: NextPage = () => {
                 Deploy a new payment stream for your team with automated withdrawals and flexible controls.
               </p>
               <div className="card-actions justify-end">
-                <button className="btn btn-primary btn-sm" disabled>
+                <button className="btn btn-primary btn-sm rounded-md" disabled>
                   Connect Wallet First
                 </button>
               </div>
@@ -51,7 +51,7 @@ const AppPage: NextPage = () => {
                 View and manage your existing payment streams, builders, and withdrawal settings.
               </p>
               <div className="card-actions justify-end">
-                <button className="btn btn-secondary btn-sm" disabled>
+                <button className="btn btn-secondary btn-sm rounded-md" disabled>
                   Connect Wallet First
                 </button>
               </div>
@@ -79,7 +79,7 @@ const AppPage: NextPage = () => {
             </p>
             <div className="card-actions justify-end">
               <Link href="/create">
-                <button className="btn btn-primary btn-sm">Create Stream</button>
+                <button className="btn btn-primary btn-sm rounded-md">Create Stream</button>
               </Link>
             </div>
           </div>
@@ -94,7 +94,7 @@ const AppPage: NextPage = () => {
             </p>
             <div className="card-actions justify-end">
               <Link href="/cohorts">
-                <button className="btn btn-secondary btn-sm">View Streams</button>
+                <button className="btn btn-secondary btn-sm rounded-md">View Streams</button>
               </Link>
             </div>
           </div>

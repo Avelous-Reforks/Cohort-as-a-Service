@@ -79,7 +79,10 @@ export const AddBatch = ({ cohortAddress, isErc20, tokenDecimals }: AddbatchProp
         <label className="modal-box relative bg-base-100 border border-primary">
           <input className="h-0 w-0 absolute top-0 left-0" />
           <p className="font-bold mb-8 flex items-center gap-1 ">Add new builders</p>
-          <label htmlFor="add-batch-modal" className="btn btn-ghost btn-sm btn-circle absolute right-3 top-3">
+          <label
+            htmlFor="add-batch-modal"
+            className="btn btn-ghost btn-sm btn-circle rounded-md absolute right-3 top-3"
+          >
             ✕
           </label>
           <div className="space-y-3">
@@ -158,7 +161,7 @@ export const AddBatch = ({ cohortAddress, isErc20, tokenDecimals }: AddbatchProp
                 </button>
               </div>
 
-              <button className="btn btn-sm btn-primary w-full" onClick={addBatch} disabled={isPending}>
+              <button className="btn btn-sm btn-primary rounded-md w-full" onClick={addBatch} disabled={isPending}>
                 Add
               </button>
             </div>

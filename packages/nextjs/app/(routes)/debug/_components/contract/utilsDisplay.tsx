@@ -64,7 +64,7 @@ const NumberDisplay = ({ value }: { value: bigint }) => {
         className="tooltip tooltip-secondary font-sans ml-2"
         data-tip={isEther ? "Multiply by 1e18" : "Divide by 1e18"}
       >
-        <button className="btn btn-ghost btn-circle btn-xs" onClick={() => setIsEther(!isEther)}>
+        <button className="btn btn-ghost btn-circle btn-xs rounded-md" onClick={() => setIsEther(!isEther)}>
           <ArrowsRightLeftIcon className="h-3 w-3 opacity-65" />
         </button>
       </span>

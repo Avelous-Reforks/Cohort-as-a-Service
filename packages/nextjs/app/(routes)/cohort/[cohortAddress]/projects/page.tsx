@@ -26,7 +26,7 @@ const page = async ({
 
   return (
     <div className="max-w-4xl">
-      <Link href={`/cohort/${params.cohortAddress}`} className="btn btn-ghost btn-sm rounded-sm">
+      <Link href={`/cohort/${params.cohortAddress}`} className="btn btn-ghost btn-sm rounded-md">
         <ArrowLongLeftIcon className="w-7 h-4" />
         Cohort
       </Link>

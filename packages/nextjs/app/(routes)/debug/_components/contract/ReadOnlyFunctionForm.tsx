@@ -86,7 +86,7 @@ export const ReadOnlyFunctionForm = ({
           )}
         </div>
         <button
-          className="btn btn-secondary btn-sm self-end md:self-start"
+          className="btn btn-secondary btn-sm rounded-md self-end md:self-start"
           onClick={async () => {
             const { data } = await refetch();
             setResult(data);

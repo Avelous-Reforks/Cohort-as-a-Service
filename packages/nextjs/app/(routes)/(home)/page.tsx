@@ -83,7 +83,7 @@ const Home: NextPage = () => {
         <div className="mt-8 flex justify-center">
           <div className="transform scale-125">
             <Link href="/app">
-              <button className="btn btn-primary btn-sm">Go To App</button>
+              <button className="btn btn-primary btn-sm rounded-md">Go To App</button>
             </Link>
           </div>
         </div>
