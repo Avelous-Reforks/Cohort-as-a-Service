@@ -107,94 +107,67 @@ const CohortPage = ({ params }: { params: { cohortAddress: string } }) => {
   };
 
   return (
-    <div className="max-w-4xl text-base-content px-4 sm:px-6 lg:px-8 mt-8">
+    <div className="max-w-7xl mx-auto text-base-content px-4 sm:px-6 lg:px-8 mt-8 mb-16">
       {isAdmin && (
         <SubdomainLink
           href="/cohorts"
-          className="btn btn-ghost btn-sm rounded-sm mb-5 font-share-tech-mono"
+          className="btn btn-ghost btn-sm rounded-md mb-6 font-share-tech-mono hover:bg-base-200"
           toMainDomain={true}
         >
-          <ArrowLongLeftIcon className="w-7 h-4" />
+          <ArrowLongLeftIcon className="w-5 h-5" />
           My cohorts
         </SubdomainLink>
       )}
-      <div>
-        <h1 className="text-4xl font-bold mb-8 text-primary-content bg-primary inline-block p-2 font-share-tech-mono">
-          Cohort
-        </h1>
-        <h2 className="text-2xl font-bold font-share-tech-mono">{name}</h2>
-        <div className="flex gap-2">
-          {description && description.length > 0 && description != "<p><br></p>" && <Preview value={description} />}
-          {isAdmin && <EditDescription cohortAddress={params.cohortAddress} currentDescription={description} />}
+      
+      {/* Header Section */}
+      <div className="mb-8">
+        <div className="flex items-center gap-3 mb-4">
+          <h1 className="text-5xl font-bold text-primary-content bg-primary px-4 py-2 font-share-tech-mono">
+            {name || "Cohort"}
+          </h1>
         </div>
-      </div>
-
-      {buildersData.length <= 8 && (
-        <div className="mt-8 ">
-          <h3 className="text-xl font-bold mb-4 font-share-tech-mono">Members</h3>
-          <BuildersList
-            cohortAddress={params.cohortAddress}
-            builderStreams={builderStreams}
-            isAdmin={isAdmin ?? false}
-            isBuilder={isBuilder ?? false}
-            userAddress={address}
-            isERC20={isERC20 ?? false}
-            tokenSymbol={tokenSymbol ?? ""}
-            isLoading={isLoading}
-            pendingRequestEvents={pendingRequestEvents}
-            completedRequestEvents={completedRequestEvents}
-            rejectedRequestEvents={rejectedRequestEvents}
-            openEventsModal={openEventsModal}
-            tokenDecimals={tokenDecimals}
-            dbBuilders={dbCohort?.Builder}
-            dbAdminAddresses={dbCohort?.adminAddresses}
-            applications={dbCohort?.Application}
-            onApplicationSuccess={handleApplicationSuccess}
-            allowApplications={allowApplications ?? false}
-          />
-        </div>
-      )}
-
-      <div className="flex gap-3">
-        {buildersData.length > 8 && (
-          <div>
-            <CohortLink href="/members" cohortAddress={params.cohortAddress}>
-              <button className="btn btn-sm btn-primary rounded-md font-share-tech-mono">Members</button>
-            </CohortLink>
+        
+        {/* Description Card */}
+        {((description && description.length > 0 && description != "<p><br></p>") || isAdmin) && (
+          <div className="card bg-base-100 border border-base-300 shadow-sm mt-4">
+            <div className="card-body p-6">
+              <div className="flex justify-between items-start gap-4">
+                <div className="flex-1">
+                  {description && description.length > 0 && description != "<p><br></p>" ? (
+                    <Preview value={description} />
+                  ) : (
+                    <p className="text-base-content/60 italic">No description yet</p>
+                  )}
+                </div>
+                {isAdmin && (
+                  <div className="flex-shrink-0">
+                    <EditDescription cohortAddress={params.cohortAddress} currentDescription={description} />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         )}
-
-        {isAdmin ? (
-          <CohortLink href="/projects" cohortAddress={params.cohortAddress}>
-            <button className="btn btn-sm rounded-md btn-primary font-normal">
-              {dbCohort?.Project && dbCohort.Project.length > 0 ? "View Projects" : "Add Projects"}
-              {(!dbCohort?.Project || dbCohort.Project.length === 0) && <Plus className="h-4 w-4" />}
-            </button>
-          </CohortLink>
-        ) : (
-          dbCohort?.Project &&
-          dbCohort.Project.length > 0 && (
-            <CohortLink href="/projects" cohortAddress={params.cohortAddress}>
-              <button className="btn btn-sm rounded-md btn-primary mb-4 font-normal">
-                {dbCohort?.Project && dbCohort.Project.length > 0 ? "View Projects" : "Add Projects"}
-                {(!dbCohort?.Project || dbCohort.Project.length === 0) && <Plus className="h-4 w-4" />}
-              </button>
-            </CohortLink>
-          )
-        )}
       </div>
 
-      <p className="font-bold mb-2 text-secondary">
-        Stream Contract
-        <span
-          className="tooltip text-white font-normal"
-          data-tip={`All streams and contributions are handled by a contract on ${chainName}.`}
-        >
-          <QuestionMarkCircleIcon className="h-5 w-5 inline-block ml-2" />
-        </span>
-      </p>
-
-      <StreamContractInfo
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        {/* Left Column - Stream Contract Info */}
+        <div className="lg:col-span-2 space-y-6">
+          <div className="card bg-base-100 border border-base-300 shadow-sm">
+            <div className="card-body p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <h3 className="text-xl font-bold text-secondary font-share-tech-mono">Stream Contract</h3>
+                <span
+                  className="tooltip text-white font-normal"
+                  data-tip={`All streams and contributions are handled by a contract on ${chainName}.`}
+                >
+                  <QuestionMarkCircleIcon className="h-5 w-5 text-base-content/60" />
+                </span>
+              </div>
+              
+              <StreamContractInfo
         owner={primaryAdmin || ""}
         isBuilder={isBuilder || false}
         oneTimeAlreadyWithdrawn={oneTimeAlreadyWithdrawn ?? false}
@@ -218,6 +191,93 @@ const CohortPage = ({ params }: { params: { cohortAddress: string } }) => {
         projects={dbCohort?.Project}
       />
 
+            </div>
+          </div>
+
+          {/* Members Section */}
+          <div className="card bg-base-100 border border-base-300 shadow-sm">
+            <div className="card-body p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-bold text-secondary font-share-tech-mono">Members</h3>
+                {buildersData.length > 8 && (
+                  <CohortLink href="/members" cohortAddress={params.cohortAddress}>
+                    <button className="btn btn-sm btn-primary rounded-md font-share-tech-mono">View All</button>
+                  </CohortLink>
+                )}
+              </div>
+              
+              {buildersData.length <= 8 ? (
+                <BuildersList
+                  cohortAddress={params.cohortAddress}
+                  builderStreams={builderStreams}
+                  isAdmin={isAdmin ?? false}
+                  isBuilder={isBuilder ?? false}
+                  userAddress={address}
+                  isERC20={isERC20 ?? false}
+                  tokenSymbol={tokenSymbol ?? ""}
+                  isLoading={isLoading}
+                  pendingRequestEvents={pendingRequestEvents}
+                  completedRequestEvents={completedRequestEvents}
+                  rejectedRequestEvents={rejectedRequestEvents}
+                  openEventsModal={openEventsModal}
+                  tokenDecimals={tokenDecimals}
+                  dbBuilders={dbCohort?.Builder}
+                  dbAdminAddresses={dbCohort?.adminAddresses}
+                  applications={dbCohort?.Application}
+                  onApplicationSuccess={handleApplicationSuccess}
+                  allowApplications={allowApplications ?? false}
+                />
+              ) : (
+                <div className="text-center py-8">
+                  <p className="text-base-content/60 mb-4">This cohort has {buildersData.length} members</p>
+                  <CohortLink href="/members" cohortAddress={params.cohortAddress}>
+                    <button className="btn btn-primary rounded-md">View All Members</button>
+                  </CohortLink>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column - Quick Actions */}
+        <div className="lg:col-span-1 space-y-6">
+          <div className="card bg-base-100 border border-base-300 shadow-sm">
+            <div className="card-body p-6">
+              <h3 className="text-lg font-bold text-secondary font-share-tech-mono mb-4">Quick Actions</h3>
+              
+              <div className="flex flex-col gap-3">
+                {isAdmin ? (
+                  <CohortLink href="/projects" cohortAddress={params.cohortAddress}>
+                    <button className="btn btn-primary rounded-md w-full justify-start gap-2">
+                      {dbCohort?.Project && dbCohort.Project.length > 0 ? "View Projects" : "Add Projects"}
+                      {(!dbCohort?.Project || dbCohort.Project.length === 0) && <Plus className="h-4 w-4" />}
+                    </button>
+                  </CohortLink>
+                ) : (
+                  dbCohort?.Project &&
+                  dbCohort.Project.length > 0 && (
+                    <CohortLink href="/projects" cohortAddress={params.cohortAddress}>
+                      <button className="btn btn-primary rounded-md w-full justify-start gap-2">
+                        View Projects
+                      </button>
+                    </CohortLink>
+                  )
+                )}
+                
+                {buildersData.length > 8 && (
+                  <CohortLink href="/members" cohortAddress={params.cohortAddress}>
+                    <button className="btn btn-primary rounded-md w-full justify-start">View All Members</button>
+                  </CohortLink>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Theme Customizer */}
+          <ThemeCustomizer cohortAddress={params.cohortAddress} isAdmin={isAdmin ?? false} />
+        </div>
+      </div>
+
       <EventsModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -234,8 +294,6 @@ const CohortPage = ({ params }: { params: { cohortAddress: string } }) => {
         cohortAddress={params.cohortAddress}
         projects={dbCohort?.Project}
       />
-
-      <ThemeCustomizer cohortAddress={params.cohortAddress} isAdmin={isAdmin ?? false} />
     </div>
   );
 };

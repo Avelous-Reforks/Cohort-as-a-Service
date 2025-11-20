@@ -204,41 +204,75 @@ export const StreamContractInfo = ({
 
   return (
     <>
-      <div className="">
+      <div className="space-y-4">
+        {/* Network Warning */}
         {cohortChainId && chainId !== cohortChainId && address && (
           <div
             onClick={() => onClick(cohortChainId)}
-            className="bg-error/15 px-3 py-1 w-fit rounded-md flex items-center gap-x-2 text-sm text-destructive mb-3 cursor-pointer hover:bg-error/25"
+            className="alert alert-error shadow-sm cursor-pointer hover:shadow-md transition-shadow"
           >
-            <TriangleAlert className="w-4 h-4" />
-            <p>{`You are on the wrong network! Switch to ${chainName}`}</p>
+            <TriangleAlert className="w-5 h-5" />
+            <span>You are on the wrong network! Switch to {chainName}</span>
           </div>
         )}
-        <div className="flex gap-1 items-start">
-          <div className="flex flex-col items-center">
-            <Address address={cohortAddress} />
-            <div className="flex gap-2 items-center mt-1 justify-between w-full">
-              {locked && (
-                <div className="tooltip cursor-pointer" data-tip="stream withdrawals are currently disallowed">
-                  <span className="badge badge-error badge-outline text-xs">Locked</span>
-                </div>
-              )}
 
-              <span className="text-xs" style={{ color: networkColor }}>
-                {chainName}
-              </span>
+        {/* Contract Address & Balance */}
+        <div className="grid grid-cols-1 gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 bg-base-200 rounded-lg">
+            <div className="flex-1 space-y-2">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-semibold text-base-content/70">Contract Address</span>
+                {locked && (
+                  <div className="tooltip" data-tip="stream withdrawals are currently disallowed">
+                    <span className="badge badge-error badge-outline badge-sm">Locked</span>
+                  </div>
+                )}
+              </div>
+              <Address address={cohortAddress} />
+              <div className="flex items-center gap-3 text-sm">
+                <span className="font-medium" style={{ color: networkColor }}>
+                  {chainName}
+                </span>
+                <span className="text-base-content/60">•</span>
+                <span className="text-base-content/70">
+                  {cycle > 0 ? `Cycle: ${cycle} days` : "One Time Cohort"}
+                </span>
+              </div>
             </div>
-            <div className="w-full">
-              <span className="text-xs text-accent/70">{cycle > 0 ? `Cycle: ${cycle} days` : "One Time Cohort"}</span>
+            
+            <div className="flex flex-col items-end gap-2">
+              <span className="text-sm font-semibold text-base-content/70">Balance</span>
+              <div className="text-2xl sm:text-3xl font-bold">
+                {!isLoading &&
+                  (isErc20 ? (
+                    <TokenBalance balance={balance} tokenSymbol={tokenSymbol} />
+                  ) : (
+                    <NativeBalance address={cohortAddress} chainId={cohortChainId as number} />
+                  ))}
+              </div>
             </div>
-          </div>{" "}
-          /
-          {!isLoading &&
-            (isErc20 ? (
-              <TokenBalance balance={balance} tokenSymbol={tokenSymbol} className="text-3xl" />
-            ) : (
-              <NativeBalance address={cohortAddress} className="text-3xl" chainId={cohortChainId as number} />
-            ))}
+          </div>
+        </div>
+
+        {/* Actions Row */}
+        <div className="flex flex-wrap gap-3 items-center">
+          {address && isBuilder && !oneTimeAlreadyWithdrawn && (
+            <label
+              htmlFor="withdraw-modal"
+              className="btn btn-primary rounded-md gap-2"
+            >
+              <BanknotesIcon className="h-5 w-5" />
+              <span>Withdraw</span>
+            </label>
+          )}
+          
+          {oneTimeAlreadyWithdrawn && isBuilder && (
+            <div className="alert alert-info shadow-sm">
+              <TriangleAlertIcon className="h-5 w-5" />
+              <span>Stream Withdrawn</span>
+            </div>
+          )}
+          
           {isAdmin && (
             <CohortActions
               cohortAddress={cohortAddress}
@@ -252,25 +286,6 @@ export const StreamContractInfo = ({
             />
           )}
         </div>
-        {address && isBuilder && !oneTimeAlreadyWithdrawn && (
-          <div className="mt-3">
-            <label
-              htmlFor="withdraw-modal"
-              className="btn btn-primary btn-sm px-2 rounded-md font-normal space-x-2 normal-case"
-            >
-              <BanknotesIcon className="h-4 w-4" />
-              <span>Withdraw</span>
-            </label>
-          </div>
-        )}
-        {oneTimeAlreadyWithdrawn && isBuilder && (
-          <div className="mt-3">
-            <label className="bg-primary flex rounded-md items-center gap-4 p-2 w-fit">
-              <TriangleAlertIcon className="h-4 w-4" />
-              <span>Stream Withdrawn</span>
-            </label>
-          </div>
-        )}
       </div>
 
       <input type="checkbox" id="withdraw-modal" className="modal-toggle" />
@@ -376,17 +391,20 @@ export const StreamContractInfo = ({
         <label className="modal-backdrop" htmlFor="withdraw-modal"></label>
       </div>
 
-      <div className="mt-8">
-        <p className="font-bold mb-2 text-secondary">Owner</p>
-        <Address address={owner} />
-      </div>
-
-      {isAdmin && (
-        <div className="mt-8">
-          <p className="font-bold mb-2 text-secondary">Admins</p>
-          <AdminsList admins={admins} cohortAddress={cohortAddress} isLoading={isLoadingAdmins} />
+      {/* Owner & Admins Section */}
+      <div className="space-y-4 mt-6">
+        <div className="p-4 bg-base-200 rounded-lg">
+          <p className="text-sm font-semibold text-base-content/70 mb-2">Owner</p>
+          <Address address={owner} />
         </div>
-      )}
+
+        {isAdmin && (
+          <div className="p-4 bg-base-200 rounded-lg">
+            <p className="text-sm font-semibold text-base-content/70 mb-3">Admins</p>
+            <AdminsList admins={admins} cohortAddress={cohortAddress} isLoading={isLoadingAdmins} />
+          </div>
+        )}
+      </div>
     </>
   );
 };
